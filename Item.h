@@ -7,12 +7,14 @@ using namespace std;
 class Item
 {
 	string item;
+	int hashItem;
 	string title;
 	int year;
 	string rated;
 	string release;
 	string runtime;
 	vector<string> genreVector;
+	vector<int> hashGenero;
 	string genre;
 	string director;
 	string writer;
@@ -38,6 +40,14 @@ class Item
 		
 		string getItem(){
 			return this->item;
+		}
+		
+		void setHashItem(int hashItem){
+			this->hashItem = hashItem;
+		}	
+		
+		int getHashItem(){
+			return this->hashItem;
 		}
 		
 		void setTitle(string title){
@@ -87,6 +97,17 @@ class Item
 		string getGenre(){
 			return this->genre;
 		}
+		
+		
+		
+		void setHashGenero(int hashGenero){
+			this->hashGenero.push_back(hashGenero);
+		}	
+		
+		vector<int> getHashGenero(){
+			return this->hashGenero;
+		}
+		
 	
 	  void setGenreVector(string genre){
 			this->genreVector.push_back(genre);

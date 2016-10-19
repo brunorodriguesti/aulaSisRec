@@ -5,22 +5,26 @@
 using namespace std;
 class Usuario
 {
-	string usuario;
+	int hashUsuario;
+	int qtdItensAvaliados;
 	
 	public:
-		//Usuario(string user){
-		//	usuario = user;
-		//}	
+		
 		Usuario();
-		void setUsuario(string user){
-			this->usuario=user;
+		void setHashUsuario(int hashUsuario){
+			this->hashUsuario=hashUsuario;
 		}
-		string getUsuario(){
-			return usuario;
+		int getHashUsuario(){
+			return this->hashUsuario;
 		}
 		
+		void setqtdItensAvaliados(int qtdItensAvaliados){
+			this->qtdItensAvaliados=qtdItensAvaliados;
+		}
 		
-	
+		int getQtdItensAvaliados(){
+			return this->getQtdItensAvaliados();
+		}
 		
 };
 

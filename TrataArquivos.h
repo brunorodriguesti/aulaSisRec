@@ -15,6 +15,7 @@
 
 #include "UsuarioItem.h"
 #include "Item.h"
+#include "Util.h"
 
 
 #include "rapidjson/filereadstream.h"
@@ -36,7 +37,9 @@ class TrataArquivos
 		char aux[100];
 		UsuarioItem usItem;
 		int cont=0;
-	
+		
+		
+		
 		ifstream arq("targets.csv");
 	
 		if(arq.is_open()){
@@ -47,9 +50,15 @@ class TrataArquivos
 					strcpy(aux, linha.c_str());
 					string usuarioAlvo = strtok(aux, ":");
 					string itemAux = strtok(NULL, ",");
-						
+					//char *itemX;
+					 //strcpy(itemX, itemAux.c_str());
+					Util util;
+					
 					usItem.setUsuario(usuarioAlvo);
+					usItem.setHashUsuario(util.hash(usuarioAlvo.c_str()));		
 					usItem.setItem(itemAux);
+					usItem.setHashItem(util.hash(itemAux.c_str()));					
+			
 					usuarioItemAlvoT.push_back(usItem);			
 				}
 			cont++;
@@ -67,7 +76,6 @@ class TrataArquivos
 		UsuarioItem userItem;
 		int cont=0;
 		vector<UsuarioItem> usuarioItemHistoricoT;	
-	
 		ifstream arq("ratings.csv");
 	
 		if(arq.is_open()){
@@ -75,6 +83,7 @@ class TrataArquivos
 			cout << "lendo arquivo ratings.csv" << endl;
 			while(getline(arq, linha)){
 				if(cont > 0){
+					
 					strcpy(aux, linha.c_str());
 					string usuarioAux = strtok(aux, ":");
 					string itemAux = strtok(NULL, ",");
@@ -84,7 +93,10 @@ class TrataArquivos
 					double avaAux = atof(avaliacaoAux);
 								
 					userItem.setUsuario(usuarioAux);
+					Util util;
+					userItem.setHashUsuario(util.hash(usuarioAux.c_str()));
 					userItem.setItem(itemAux);
+					userItem.setHashItem(util.hash(itemAux.c_str()));
 					userItem.setAvaliacao(avaAux);
 					userItem.setData(dataAux);
                 
@@ -116,9 +128,12 @@ vector<Item> lerJson(){
 				string item = strtok(aux, ",");
 				char *conteudo = strtok(NULL,"\n");
 				
+				Util util; 
+				
 				Document document;
 				document.Parse(conteudo);
 				itemConteudo.setItem(item);
+				itemConteudo.setHashItem(util.hash(item.c_str()));
 							
 				if(document.HasMember("Title"))
 					itemConteudo.setTitle(document["Title"].GetString());
@@ -136,6 +151,7 @@ vector<Item> lerJson(){
 					while(getline(gen, genreAux, ',')){
 						genreAux.erase(remove(genreAux.begin(), genreAux.end(), ' '), genreAux.end());
 						itemConteudo.setGenreVector(genreAux);
+						itemConteudo.setHashGenero(util.hash(genreAux.c_str()));
 						}
 				}	
 					

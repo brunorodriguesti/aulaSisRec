@@ -6,22 +6,33 @@ using namespace std;
 
 class Conteudo
 {
-	string coteudo;
+	string conteudo;
+	int hashConteudo;
 	int quantidade;
 	float avaliacao;
 	
 	public:
+		
 		void setConteudo(string conteudo){
-			this->coteudo=conteudo;
+			this->conteudo=conteudo;
 		}
 		
 		string getConteudo(){
-			return this->coteudo;
+			return this->conteudo;
+		}
+		
+		
+		void setHashConteudo(int hashConteudo){
+			this->hashConteudo=hashConteudo;
+		}
+		
+		int getHashConteudo(){
+			return this->hashConteudo;
 		}
 		
 		
 		void setQuantidade(int quantidade){
-			this->quantidade=quantidade;
+			this->quantidade=quantidade+quantidade;
 		}
 		
 		int getQuantidade(){
